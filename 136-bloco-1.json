@@ -1,0 +1,106 @@
+{
+    "rules": {
+    
+        "update": "informe_aqui_o_valor",
+        /*
+         * NOME: UPDATE 
+         * DESCRICAO: DETERMINA SE IRA CRIAR OU ATUALIZAR UMA OPORTUNIDADE
+         * VALORES: {
+         *  true, // ATUALIZARÁ UMA OP, UTILIZANDO O ATRIBUTO 'ID' DO LEAD
+         *  false // CRIARÁ UMA NOVA OP
+         * }
+         * PADRÃO: false
+         */
+         
+        "filter_status_update": "informe_aqui_o_valor",
+        /*
+         * NOME: FILTER_STATUS_UPDATE 
+         * DESCRICAO: SE JÁ HOUVER UMA OPORTUNIDADE COM O STATUS INFORMADO(E COM O MESMO ID), SERÁ ATUALIZADA ESSA OPORTUNIDADE, CASO CONTRARIO, UMA NOVA SERÁ CRIADA.
+         * VALORES: {
+         *  "open", // ABERTA
+         *  "closed", // GANHA
+         *  "lost" // PERDIDA
+         * }
+         * PADRÃO: "open" // ABERTA
+         */
+         
+        "filter_situation_update": "informe_aqui_o_valor",
+        /*
+         * NOME: FILTER_SITUATION_UPDATE 
+         * DESCRICAO: SE JÁ HOUVER UMA OPORTUNIDADE COM A SITUAÇÃO INFORMADA(E COM O MESMO ID), SERÁ ATUALIZADA ESSA OPORTUNIDADE, CASO CONTRARIO, UMA NOVA SERÁ CRIADA..
+         * VALORES: {
+         * "unfreezed",   // NORMAL ou descongelada
+         * "freezed",  //  CONGELADA
+                 * "undeleted",  // NORMAL ou fora da lixeira
+         * "deleted"  // NA LIXEIRA
+         * }
+         * PADRÃO: "NULL" // NULO ou oportunidade aberta normal.
+         */
+        
+        "equal_pipeline": "informe_aqui_o_valor",
+         /*
+         * NOME: EQUAL_PIPELINE
+         * DESCRICAO: DETERMINA O FUNIL PARA BUSCAR A OP POR SER ATUALIZADA
+         * VALORES: {
+         *  true, // BUSCARÁ A OP NO MESMO FUNIL DA ETAPA RECEBIDA ATRAVÉS DA HASH
+         *  false // BUSCARÁ A OP INDEPENDENTE DO FUNIL
+         * }
+         * PADRÃO: false
+         * OBS:DEPENDE DA REGRA 'UPDATE' > 'TRUE'
+         */
+        
+        
+        "status": "informe_aqui_o_valor",
+          /*
+         * NOME: STATUS
+         * DESCRICAO: DETERMINA O STATUS DA OPORTUNIDADE
+         * VALORES: {
+         *  "open", // ABERTA
+         *  "closed", // GANHA
+         *  "lost" // PERDIDA
+         * }
+         * PADRÃO: "open"
+         * OBS: AÇÕES AUTOMÁTICAS SERÃO EXECUTADAS, DEPENDENDO DO GATILHO
+         */
+        
+        
+        "situation": "informe_aqui_o_valor",
+        
+        /*
+         * NOME: SITUATION
+         * DESCRICAO: DETERMINA A SITUAÇÃO DA OPORTUNIDADE
+         * VALORES: {
+         *  "freezed", // CONGELA A OP
+         *  "unfreezed", // DESCONGELA A OP
+         *  "delete", // ENVIA PARA LIXEIRA A OP
+         *  "undelete", // RETIRA DA LIXEIRA A OP
+         * }
+         * PADRÃO: "NULL" // NULO
+         * OBS: PERMITE MAIS DE UM VALOR NESSA REGRA, DEVENDO SER SEPARADO POR "," (VÍRGULA)
+         */
+        
+        
+        "validate_cpf": "informe_aqui_o_valor",
+        /*
+         * NOME: VALIDATE_CPF
+         * DESCRICAO: DETERMINA BUSCA DA PESSOA
+         * VALORES: {
+         *  true, // BUSCA A PESSOA ATRAVÉS DO ATRIBUTO 'CPF'
+         *  false // BUSCA A PESSOA ATRAVÉS DO ATRIBUTO 'EMAIL'
+         * }
+         * PADRÃO: false
+         */
+        
+        
+        "validate_cnpj": "informe_aqui_o_valor"
+        /*
+         * NOME: VALIDATE_CNPJ
+         * DESCRICAO: DETERMINA BUSCA DA EMPRESA
+         * VALORES: {
+         *  true, // BUSCA A EMPRESA ATRAVÉS DO ATRIBUTO 'CNPJ'
+         *  false // BUSCA A EMPRESA ATRAVÉS DO ATRIBUTO 'COMPANY'
+         * }
+         * PADRÃO: false
+         */
+    }
+}

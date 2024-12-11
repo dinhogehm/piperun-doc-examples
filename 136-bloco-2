@@ -1,0 +1,36 @@
+{
+    "leads": [{
+        "id": "informe_aqui_o_valor", // OPORTUNIDADE: IDENTIFICADOR (PARA NÃO DUPLICAR)
+        "user": "informe_aqui_o_valor", // OPORTUNIDADE: DONO
+        "title": "informe_aqui_o_valor", // OPORTUNIDADE: TITULO
+        "value": "informe_aqui_o_valor", // OPORTUNIDADE: VALOR DA NEGOCIAÇÃO
+        "value_mrr": "informe_aqui_o_valor", // OPORTUNIDADE: VALOR RECORRENTE
+        "email": "informe_aqui_o_valor", // PESSOA: E-MAIL
+        "name": "informe_aqui_o_valor", // PESSOA: NOME
+        "cpf": "informe_aqui_o_valor", // PESSOA: CPF
+        "bith_day": "informe_aqui_o_valor", // PESSOA: DATA DE NASCIMENTO
+        "personal_phone": "informe_aqui_o_valor", // PESSOA: TELEFONE
+        "mobile_phone": "informe_aqui_o_valor", // PESSOA: TELEFONE
+        "public_url": "informe_aqui_o_valor", // PESSOA: URL PÚBLICO
+        "job_title": "informe_aqui_o_valor", // PESSOA: CARGO
+        "cnpj": "informe_aqui_o_valor", // EMPRESA: CNPJ
+        "company": "informe_aqui_o_valor", // EMPRESA: NOME
+        "city_name": "informe_aqui_o_valor", // CIDADE: NOME (UTILIZADO EM EMPRESA/PESSOA)
+        "city_state": "informe_aqui_o_valor", // CIDADE: UF (UTILIZADO EM EMPRESA/PESSOA)
+        "last_conversion": {
+            "source": "informe_aqui_o_valor" // OPORTUNIDADE: ORIGEM
+        },
+        "custom_fields": {
+            "Nome do campo 1": "informe_aqui_o_valor", // OPORTUNIDADE: CAMPO CUSTOMIZADO
+            "Nome do campo 2": "informe_aqui_o_valor" // OPORTUNIDADE: CAMPO CUSTOMIZADO
+        },
+        "tags": [
+            "nome_da_tag 1", // OPORTUNIDADE: TAG
+            "nome_da_tag 2" // OPORTUNIDADE: TAG
+        ],
+        "notes": [
+            "texto da nota 1", // OPORTUNIDADE: NOTAS
+            "texto da nota 2" // OPORTUNIDADE: NOTAS
+        ]
+    }]
+}

@@ -8,4 +8,6 @@ function enviarDados() {
   let assunto = document.getElementById("idAssunto").value;
   let mensagem = document.getElementById("idMsg").value;
 
+  let teste = '123';
+
 }

@@ -1,3 +1,3 @@
 {
-"<nome-da-chave-de-saída>":"<nome-da-chave-do-piperun>"
+"nome-da-chave-de-saída":"nome-da-chave-do-piperun"
 }

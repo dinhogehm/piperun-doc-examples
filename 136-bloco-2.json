@@ -8,7 +8,7 @@
         "email": "informe_aqui_o_valor", // PESSOA: E-MAIL
         "name": "informe_aqui_o_valor", // PESSOA: NOME
         "cpf": "informe_aqui_o_valor", // PESSOA: CPF
-        "bith_day": "informe_aqui_o_valor", // PESSOA: DATA DE NASCIMENTO
+        "birth_day": "informe_aqui_o_valor", // PESSOA: DATA DE NASCIMENTO
         "personal_phone": "informe_aqui_o_valor", // PESSOA: TELEFONE
         "mobile_phone": "informe_aqui_o_valor", // PESSOA: TELEFONE
         "public_url": "informe_aqui_o_valor", // PESSOA: URL PÚBLICO

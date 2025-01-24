@@ -177,7 +177,12 @@
     }
 
     // Classe para o elemento code
-    class CodeElement extends CodeBase {
+    class CodeElement extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+
       async connectedCallback() {
         const url = this.textContent.trim();
         const lang = this.getAttribute('lang') || 'javascript';
@@ -199,11 +204,110 @@
           this.renderError(error.message);
         }
       }
+
+      escapeHTML(str) {
+        return str.replace(/&/g, "&amp;")
+                  .replace(/</g, "<")
+                  .replace(/>/g, ">")
+                  .replace(/"/g, '"')
+                  .replace(/'/g, "&#039;");
+      }
+
+      renderError(message) {
+        if (this.shadowRoot) {
+          this.shadowRoot.innerHTML = `
+            <style>
+              .error {
+                color: red;
+                font-family: Arial, sans-serif;
+                padding: 1em;
+                border: 1px solid red;
+                border-radius: 5px;
+                background-color: #ffe6e6;
+              }
+            </style>
+            <div class="error">Erro: ${message}</div>
+          `;
+        }
+      }
+
+      async renderContent(content, lang) {
+        const escapedContent = this.escapeHTML(content);
+        const style = `
+          pre {
+            margin: 0; 
+            padding: 1em;
+            overflow: auto; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+          }
+          .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .copy-button:hover {
+            background-color: #5a6268;
+          }
+          .container {
+            position: relative;
+          }
+        `;
+
+        this.shadowRoot.innerHTML = `
+          <style>${style}</style>
+          <link rel="stylesheet" href="${hljsCSS}">
+          <div class="container">
+            <button class="copy-button">Copiar código</button>
+            <pre><code class="language-${lang}">${escapedContent}</code></pre>
+          </div>
+        `;
+
+        const codeBlock = this.shadowRoot.querySelector('code');
+        if (window.hljs && typeof hljs.highlightElement === 'function') {
+          hljs.highlightElement(codeBlock);
+        }
+
+        const copyButton = this.shadowRoot.querySelector('.copy-button');
+        copyButton.addEventListener('click', () => {
+          const code = this.shadowRoot.querySelector('code').innerText;
+          navigator.clipboard.writeText(code).then(() => {
+            const button = this.shadowRoot.querySelector('.copy-button');
+            const originalText = button.innerText;
+            button.innerText = 'Copiado!';
+            button.disabled = true;
+            setTimeout(() => {
+              button.innerText = originalText;
+              button.disabled = false;
+            }, 2000);
+          }).catch(err => {
+            console.error('Falha ao copiar o código:', err);
+            const button = this.shadowRoot.querySelector('.copy-button');
+            const originalText = button.innerText;
+            button.innerText = 'Falha ao copiar';
+            button.disabled = true;
+            setTimeout(() => {
+              button.innerText = originalText;
+              button.disabled = false;
+            }, 2000);
+          });
+        });
+      }
     }
 
     customElements.define('code-viewer', CodeViewer);
-    customElements.define('code', CodeElement, { extends: 'code' });
-    console.log("Custom elements definidos: <code-viewer> e <code>");
+    customElements.define('x-code', CodeElement);
+    console.log("Custom elements definidos: <code-viewer> e <x-code>");
   }).catch(err => {
     console.error('Erro ao carregar Highlight.js:', err);
   });

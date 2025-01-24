@@ -33,7 +33,7 @@ Este é um componente Web personalizado para exibição de código com syntax hi
 Exemplo:
 ```html
 <code-viewer 
-    src-format="https://raw.githubusercontent.com/user/repo/main/exemplo.js" 
+    src-format="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" 
     lang="javascript">
 </code-viewer>
 ```
@@ -41,12 +41,12 @@ Exemplo:
 #### 2. Usando a tag `code`
 
 ```html
-<code lang="javascript">URL_DO_CODIGO</code>
+<code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
 ```
 
 Exemplo:
 ```html
-<code lang="javascript">https://raw.githubusercontent.com/user/repo/main/exemplo.js</code>
+<code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
 ```
 
 ### Atributos
@@ -80,12 +80,12 @@ Exemplo:
 <body>
     <!-- Usando code-viewer -->
     <code-viewer 
-        src-format="https://raw.githubusercontent.com/user/repo/main/exemplo.js" 
+        src-format="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" 
         lang="javascript">
     </code-viewer>
 
     <!-- Usando code -->
-    <code lang="javascript">https://raw.githubusercontent.com/user/repo/main/exemplo.js</code>
+    <code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
 </body>
 </html>
 ```

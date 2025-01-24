@@ -1,0 +1,1 @@
+PUT /oportunidades/{id}?with=tags,customFields

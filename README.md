@@ -2,6 +2,8 @@
 
 Um componente simples e leve para exibir código com syntax highlighting.
 
+## Para refletir alterações no code-viewer.js, atualize o script no painel da Elev.io (https://app.elev.io/kb/customize)
+
 ## Características
 
 - Suporte a múltiplas linguagens de programação

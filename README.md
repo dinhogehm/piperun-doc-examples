@@ -1,55 +1,30 @@
-# piperun-doc-examples
+# Code Viewer
 
-## Code Viewer Component
+Um componente simples e leve para exibir código com syntax highlighting.
 
-Este é um componente Web personalizado para exibição de código com syntax highlighting usando o Highlight.js.
+## Características
 
-### Características
-
-- Syntax highlighting automático usando Highlight.js
 - Suporte a múltiplas linguagens de programação
 - Botão de copiar código
 - Tema github-dark por padrão
-- Compatível com sites que removem tags não-HTML
+- Duas formas de uso:
+  1. Tag HTML nativa `<pre>` (recomendado para maior compatibilidade)
+  2. Web Component `<code-viewer>` (para projetos que suportam)
 
 ### Instalação
 
-1. Inclua o script no seu HTML:
-```html
-<script src="code-viewer/code-viewer.js"></script>
-```
-
-### Formas de Uso
-
-#### 1. Usando o componente `code-viewer`
+1. Adicione o arquivo `code-viewer.js` ao seu projeto
+2. Importe o script na sua página HTML:
 
 ```html
-<code-viewer 
-    src-format="URL_DO_CODIGO" 
-    lang="javascript">
-</code-viewer>
+<script src="code-viewer.js"></script>
 ```
 
-Exemplo:
-```html
-<code-viewer 
-    src-format="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" 
-    lang="javascript">
-</code-viewer>
-```
+### Uso
 
-#### 2. Usando a tag `enhanced-code`
+#### 1. Usando a tag HTML nativa (Recomendado)
 
-```html
-<enhanced-code lang="javascript">URL_DO_CODIGO</enhanced-code>
-```
-
-Exemplo:
-```html
-<enhanced-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</enhanced-code>
-```
-
-#### 3. Usando a tag `pre` com atributos `data-url` e `data-lang`
+Use a tag `pre` com os atributos `data-url` e `data-lang`:
 
 ```html
 <pre data-url="URL_DO_CODIGO" data-lang="javascript"></pre>
@@ -60,68 +35,86 @@ Exemplo:
 <pre data-url="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" data-lang="javascript"></pre>
 ```
 
+#### 2. Usando o Web Component
+
+Use a tag `code-viewer` com os atributos `src-format` e `lang`:
+
+```html
+<code-viewer src-format="URL_DO_CODIGO" lang="javascript"></code-viewer>
+```
+
+Exemplo:
+```html
+<code-viewer src-format="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" lang="javascript"></code-viewer>
+```
+
 ### Atributos
-
-#### Para ambas as tags:
-- `lang`: Linguagem do código (opcional, padrão: "javascript")
-  - Exemplos: "javascript", "python", "java", "php", etc.
-
-#### Específico para `code-viewer`:
-- `src-format`: URL do código fonte a ser exibido
 
 #### Para a tag `pre`:
 - `data-url`: URL do código a ser carregado
 - `data-lang`: Linguagem do código (opcional, padrão: javascript)
 
+#### Para a tag `code-viewer`:
+- `src-format`: URL do código a ser carregado
+- `lang`: Linguagem do código (opcional, padrão: javascript)
+
 ### Funcionalidades
 
 1. **Syntax Highlighting**: O código é automaticamente formatado de acordo com a linguagem especificada
-2. **Botão de Copiar**: Um botão no canto superior direito permite copiar o código para a área de transferência
-3. **Tratamento de Erros**: Mensagens de erro são exibidas quando:
-   - URL não é fornecida
-   - Erro ao buscar o arquivo
-   - Falha ao copiar o código
+2. **Botão de Copiar**: Um botão é adicionado no canto superior direito para copiar o código
+3. **Tema Dark**: O código é exibido com um tema dark por padrão
 
-### Exemplo Completo
+### Exemplo completo
 
 ```html
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Code Viewer Example</title>
-    <script src="code-viewer/code-viewer.js"></script>
+    <script src="code-viewer.js"></script>
 </head>
 <body>
-    <!-- Usando code-viewer -->
-    <code-viewer 
-        src-format="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" 
-        lang="javascript">
-    </code-viewer>
-
-    <!-- Usando enhanced-code -->
-    <enhanced-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</enhanced-code>
-
-    <!-- Usando pre -->
+    <!-- Usando tag HTML nativa (recomendado) -->
     <pre data-url="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" data-lang="javascript"></pre>
+
+    <!-- Usando Web Component -->
+    <code-viewer src-format="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" lang="javascript"></code-viewer>
 </body>
 </html>
 ```
 
-### Dependências
+### Suporte a Linguagens
 
-O componente carrega automaticamente:
-- Highlight.js (v11.8.0)
-- Tema github-dark do Highlight.js
+O componente suporta todas as linguagens disponíveis no highlight.js, incluindo:
+- JavaScript
+- HTML
+- CSS
+- PHP
+- Python
+- Ruby
+- Java
+- C++
+- E muitas outras...
+
+### Tratamento de Erros
+
+O componente exibe mensagens de erro em casos como:
+- URL não fornecida
+- Erro ao carregar o código
+- Erro ao copiar o código
 
 ### Compatibilidade
 
-- Navegadores modernos que suportam Web Components
-- Shadow DOM
-- Custom Elements
-- Fetch API
+- Tag `pre`: Funciona em todos os navegadores e sites
+- Tag `code-viewer`: Requer suporte a Web Components
+- Não requer nenhuma biblioteca externa (highlight.js é carregado automaticamente)
 
 ### Limitações
 
-- Requer conexão com internet para carregar o Highlight.js e o tema
-- A URL do código deve permitir CORS para funcionar corretamente
+- A URL do código deve permitir acesso via CORS
+- O código é carregado via AJAX, então a página deve estar em um servidor
+- A tag `code-viewer` pode não funcionar em sites que removem tags não-HTML
+
+### Contribuindo
+
+Sinta-se à vontade para contribuir com melhorias através de pull requests.

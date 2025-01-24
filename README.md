@@ -10,7 +10,7 @@ Este é um componente Web personalizado para exibição de código com syntax hi
 - Suporte a múltiplas linguagens de programação
 - Botão de copiar código
 - Tema github-dark por padrão
-- Duas formas de uso: tag `code-viewer` ou tag `code` estendida
+- Duas formas de uso: tag `code-viewer` ou tag `enhanced-code`
 
 ### Instalação
 
@@ -38,15 +38,15 @@ Exemplo:
 </code-viewer>
 ```
 
-#### 2. Usando a tag `code` estendida
+#### 2. Usando a tag `enhanced-code`
 
 ```html
-<code is="code" lang="javascript">URL_DO_CODIGO</code>
+<enhanced-code lang="javascript">URL_DO_CODIGO</enhanced-code>
 ```
 
 Exemplo:
 ```html
-<code is="code" lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
+<enhanced-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</enhanced-code>
 ```
 
 ### Atributos
@@ -84,8 +84,8 @@ Exemplo:
         lang="javascript">
     </code-viewer>
 
-    <!-- Usando code estendido -->
-    <code is="code" lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
+    <!-- Usando enhanced-code -->
+    <enhanced-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</enhanced-code>
 </body>
 </html>
 ```

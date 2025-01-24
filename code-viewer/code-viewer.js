@@ -177,7 +177,7 @@
     }
 
     // Classe para estender o elemento code nativo
-    class CodeElement extends HTMLCodeElement {
+    class CodeElement extends HTMLElement {
       constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -306,8 +306,8 @@
     }
 
     customElements.define('code-viewer', CodeViewer);
-    customElements.define('code', CodeElement, { extends: 'code' });
-    console.log("Custom elements definidos: <code-viewer> e <code>");
+    customElements.define('enhanced-code', CodeElement);
+    console.log("Custom elements definidos: <code-viewer> e <enhanced-code>");
   }).catch(err => {
     console.error('Erro ao carregar Highlight.js:', err);
   });

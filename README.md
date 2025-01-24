@@ -10,7 +10,7 @@ Este é um componente Web personalizado para exibição de código com syntax hi
 - Suporte a múltiplas linguagens de programação
 - Botão de copiar código
 - Tema github-dark por padrão
-- Duas formas de uso: tag `code-viewer` ou tag `x-code`
+- Duas formas de uso: tag `code-viewer` ou tag `code` estendida
 
 ### Instalação
 
@@ -38,15 +38,15 @@ Exemplo:
 </code-viewer>
 ```
 
-#### 2. Usando a tag `x-code`
+#### 2. Usando a tag `code` estendida
 
 ```html
-<x-code lang="javascript">URL_DO_CODIGO</x-code>
+<code is="code" lang="javascript">URL_DO_CODIGO</code>
 ```
 
 Exemplo:
 ```html
-<x-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</x-code>
+<code is="code" lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
 ```
 
 ### Atributos
@@ -84,8 +84,8 @@ Exemplo:
         lang="javascript">
     </code-viewer>
 
-    <!-- Usando x-code -->
-    <x-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</x-code>
+    <!-- Usando code estendido -->
+    <code is="code" lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</code>
 </body>
 </html>
 ```

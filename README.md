@@ -10,7 +10,7 @@ Este é um componente Web personalizado para exibição de código com syntax hi
 - Suporte a múltiplas linguagens de programação
 - Botão de copiar código
 - Tema github-dark por padrão
-- Duas formas de uso: tag `code-viewer` ou tag `enhanced-code`
+- Compatível com sites que removem tags não-HTML
 
 ### Instalação
 
@@ -49,6 +49,17 @@ Exemplo:
 <enhanced-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</enhanced-code>
 ```
 
+#### 3. Usando a tag `pre` com atributos `data-url` e `data-lang`
+
+```html
+<pre data-url="URL_DO_CODIGO" data-lang="javascript"></pre>
+```
+
+Exemplo:
+```html
+<pre data-url="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" data-lang="javascript"></pre>
+```
+
 ### Atributos
 
 #### Para ambas as tags:
@@ -57,6 +68,10 @@ Exemplo:
 
 #### Específico para `code-viewer`:
 - `src-format`: URL do código fonte a ser exibido
+
+#### Para a tag `pre`:
+- `data-url`: URL do código a ser carregado
+- `data-lang`: Linguagem do código (opcional, padrão: javascript)
 
 ### Funcionalidades
 
@@ -86,6 +101,9 @@ Exemplo:
 
     <!-- Usando enhanced-code -->
     <enhanced-code lang="javascript">https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js</enhanced-code>
+
+    <!-- Usando pre -->
+    <pre data-url="https://raw.githubusercontent.com/dinhogehm/piperun-doc-examples/refs/heads/main/172-bloco-4-wordpress-wpcf7Elm.js" data-lang="javascript"></pre>
 </body>
 </html>
 ```

@@ -1,0 +1,60 @@
+{
+    "success": true,
+    "message": "OK",
+    "data": {
+        "id": 33212219,
+        "hash": "at91up5t9kw0oowswcsgs8408og4cc8",
+        "rdstation_reference": null,
+        "data_congelamento": null,
+        "type_reference": null,
+        "reference": null,
+        "temperature": null,
+        "probability": null,
+        "deleted_at": null,
+        "account_id": 3873,
+        "pipeline_id": 82119,
+        "owner_id": 33059,
+        "stage_id": 515165,
+        "person_id": null,
+        "company_id": null,
+        "lost_reason_id": null,
+        "origin_id": null,
+        "started_in_stage_id": 515165,
+        "created_at": "2024-12-10 17:38:40",
+        "title": "cf feldens alterado json response",
+        "description": null,
+        "observation": null,
+        "status": 0,
+        "closed_at": null,
+        "reason_close": null,
+        "deleted": 0,
+        "freezed": 0,
+        "value": "0.00",
+        "order": 6,
+        "updated_at": "2025-01-09 14:31:06",
+        "last_stage_updated_at": "2025-01-09 14:31:06",
+        "value_mrr": "0.00",
+        "probably_closed_at": null,
+        "last_contact_at": null,
+        "stage_changed_at": null,
+        "tags": [
+            {
+                "id": 273265,
+                "active": true,
+                "deleted_at": null,
+                "account_id": 3873,
+                "user_id": 33059,
+                "name": "[base] converteram | startup summit online 2023 | 24.07.23",
+                "color": "danger",
+                "created_at": "2023-07-24T17:53:57.000000Z",
+                "belongs": 1,
+                "pivot": {
+                    "id_orcamento": 33212219,
+                    "id_tag": 273265,
+                    "deal_id": 33212219,
+                    "tag_id": 273265
+                }
+            }
+        ]
+    }
+}

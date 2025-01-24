@@ -27,102 +27,18 @@
   const hljsCSS = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css";
   const hljsJS = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js";
 
-  // Carrega os recursos do Highlight.js antes de definir o custom element
+  // Carrega os recursos do Highlight.js antes de definir os custom elements
   Promise.all([loadCSS(hljsCSS), loadScript(hljsJS)]).then(() => {
-    console.log("Highlight.js carregado. Definindo CodeViewer custom element.");
+    console.log("Highlight.js carregado. Definindo custom elements.");
 
-    class CodeViewer extends HTMLElement {
+    // Classe base para compartilhar funcionalidades comuns
+    class CodeBase extends HTMLElement {
       constructor() {
         super();
-        this.attachShadow({ mode: 'open' }); // Anexa o Shadow DOM corretamente
-        console.log("Shadow DOM anexado.");
+        this.attachShadow({ mode: 'open' });
       }
 
-      async connectedCallback() {
-        const rawUrl = this.getAttribute('src-format') || '';
-        const lang = this.getAttribute('lang') || 'javascript';
-        console.log(`ConnectedCallback: src-format=${rawUrl}, lang=${lang}`);
-
-        if (!rawUrl) {
-          this.renderError("Atributo 'src-format' não fornecido.");
-          return;
-        }
-
-        try {
-          const response = await fetch(rawUrl);
-          if (!response.ok) {
-            throw new Error(`Erro ao buscar o arquivo: ${response.status} ${response.statusText}`);
-          }
-          const content = await response.text();
-          const escapedContent = this.escapeHTML(content);
-          console.log("Conteúdo do arquivo obtido e escapado.");
-
-          const style = `
-            pre {
-              margin: 0; 
-              padding: 1em;
-              overflow: auto; 
-              border: 1px solid #ccc; 
-              border-radius: 5px;
-              background: #0d1117; /* fundo escuro do tema github-dark */
-              color: #c9d1d9;
-              font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-            }
-            .copy-button {
-              position: absolute;
-              top: 10px;
-              right: 10px;
-              padding: 5px 10px;
-              font-size: 12px;
-              background-color: #6c757d;
-              color: white;
-              border: none;
-              border-radius: 3px;
-              cursor: pointer;
-            }
-            .copy-button:hover {
-              background-color: #5a6268;
-            }
-            .container {
-              position: relative;
-            }
-          `;
-
-          // Inserir o código, botão de copiar e o link CSS no Shadow DOM usando shadowRoot
-          this.shadowRoot.innerHTML = `
-            <style>
-              ${style}
-            </style>
-            <link rel="stylesheet" href="${hljsCSS}">
-            <div class="container">
-              <button class="copy-button">Copiar código</button>
-              <pre><code class="language-${lang}">${escapedContent}</code></pre>
-            </div>
-          `;
-          console.log("Conteúdo inserido no Shadow DOM.");
-
-          // Destacar o código usando Highlight.js
-          const codeBlock = this.shadowRoot.querySelector('code');
-          if (window.hljs && typeof hljs.highlightElement === 'function') {
-            hljs.highlightElement(codeBlock);
-            console.log("Highlight.js aplicado.");
-          } else {
-            console.warn('Highlight.js não carregado corretamente.');
-          }
-
-          // Adicionar evento para o botão de copiar código
-          const copyButton = this.shadowRoot.querySelector('.copy-button');
-          copyButton.addEventListener('click', () => {
-            this.copyCodeToClipboard();
-          });
-          console.log("Evento de copiar código adicionado.");
-        } catch (error) {
-          console.error(error);
-          this.renderError(error.message);
-        }
-      }
-
-      // Função para escapar caracteres HTML
+      // Métodos comuns aqui...
       escapeHTML(str) {
         return str.replace(/&/g, "&amp;")
                   .replace(/</g, "<")
@@ -131,7 +47,6 @@
                   .replace(/'/g, "&#039;");
       }
 
-      // Função para renderizar mensagens de erro
       renderError(message) {
         if (this.shadowRoot) {
           this.shadowRoot.innerHTML = `
@@ -147,13 +62,9 @@
             </style>
             <div class="error">Erro: ${message}</div>
           `;
-          console.log("Mensagem de erro renderizada no Shadow DOM.");
-        } else {
-          console.error("Shadow DOM não está disponível para renderizar o erro.");
         }
       }
 
-      // Função para copiar o código para a área de transferência
       copyCodeToClipboard() {
         const code = this.shadowRoot.querySelector('code').innerText;
         navigator.clipboard.writeText(code).then(() => {
@@ -164,7 +75,6 @@
         });
       }
 
-      // Função para mostrar confirmação de cópia
       showCopySuccess() {
         const button = this.shadowRoot.querySelector('.copy-button');
         const originalText = button.innerText;
@@ -174,10 +84,8 @@
           button.innerText = originalText;
           button.disabled = false;
         }, 2000);
-        console.log("Código copiado com sucesso.");
       }
 
-      // Função para mostrar falha na cópia
       showCopyFailure() {
         const button = this.shadowRoot.querySelector('.copy-button');
         const originalText = button.innerText;
@@ -187,13 +95,116 @@
           button.innerText = originalText;
           button.disabled = false;
         }, 2000);
-        console.log("Falha ao copiar o código.");
+      }
+
+      async renderContent(content, lang) {
+        const escapedContent = this.escapeHTML(content);
+        const style = `
+          pre {
+            margin: 0; 
+            padding: 1em;
+            overflow: auto; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+          }
+          .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .copy-button:hover {
+            background-color: #5a6268;
+          }
+          .container {
+            position: relative;
+          }
+        `;
+
+        this.shadowRoot.innerHTML = `
+          <style>${style}</style>
+          <link rel="stylesheet" href="${hljsCSS}">
+          <div class="container">
+            <button class="copy-button">Copiar código</button>
+            <pre><code class="language-${lang}">${escapedContent}</code></pre>
+          </div>
+        `;
+
+        const codeBlock = this.shadowRoot.querySelector('code');
+        if (window.hljs && typeof hljs.highlightElement === 'function') {
+          hljs.highlightElement(codeBlock);
+        }
+
+        const copyButton = this.shadowRoot.querySelector('.copy-button');
+        copyButton.addEventListener('click', () => {
+          this.copyCodeToClipboard();
+        });
+      }
+    }
+
+    // Classe para o elemento code-viewer
+    class CodeViewer extends CodeBase {
+      async connectedCallback() {
+        const rawUrl = this.getAttribute('src-format') || '';
+        const lang = this.getAttribute('lang') || 'javascript';
+
+        if (!rawUrl) {
+          this.renderError("Atributo 'src-format' não fornecido.");
+          return;
+        }
+
+        try {
+          const response = await fetch(rawUrl);
+          if (!response.ok) {
+            throw new Error(`Erro ao buscar o arquivo: ${response.status} ${response.statusText}`);
+          }
+          const content = await response.text();
+          await this.renderContent(content, lang);
+        } catch (error) {
+          console.error(error);
+          this.renderError(error.message);
+        }
+      }
+    }
+
+    // Classe para o elemento code
+    class CodeElement extends CodeBase {
+      async connectedCallback() {
+        const url = this.textContent.trim();
+        const lang = this.getAttribute('lang') || 'javascript';
+
+        if (!url) {
+          this.renderError("URL não fornecida no conteúdo da tag.");
+          return;
+        }
+
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Erro ao buscar o arquivo: ${response.status} ${response.statusText}`);
+          }
+          const content = await response.text();
+          await this.renderContent(content, lang);
+        } catch (error) {
+          console.error(error);
+          this.renderError(error.message);
+        }
       }
     }
 
     customElements.define('code-viewer', CodeViewer);
-    console.log("<code-viewer> custom element definido.");
+    customElements.define('code', CodeElement, { extends: 'code' });
+    console.log("Custom elements definidos: <code-viewer> e <code>");
   }).catch(err => {
-    console.error('Erro ao carregar recursos do Highlight.js:', err);
+    console.error('Erro ao carregar Highlight.js:', err);
   });
 })();

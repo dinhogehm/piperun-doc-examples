@@ -16,10 +16,12 @@
         "name": "Pessoa 123",
         "email": "pessoa_email@email.com",
         "cpf": "0123456789",
+        "person_phone_main": "(51) 33333334", 
         "personal_phone": "(51) 33333333",
         "mobile_phone": "(51) 999999999",
         "company": "Empresa 456",
         "cnpj": "9876543210",
+        "company_phone_main": "(51) 33333334",
         "city_name": "Porto Alegre",
         "city_state": "RS",
         "last_conversion": {
